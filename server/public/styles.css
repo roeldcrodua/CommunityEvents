@@ -1,0 +1,281 @@
+/* Custom styling for Listicle App */
+
+:root {
+  --form-element-valid-border-color: #22c55e;
+  --transition: all 0.3s ease;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Navigation Banner */
+.nav-banner {
+  width: 100%;
+  height: 150px;
+  background-image: url('https://fl-palmsprings.civicplus.com/ImageRepository/Document?documentID=3096');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 1rem;
+}
+
+main {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+main.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(1100px, calc(100% - 2rem));
+  box-sizing: border-box;
+  border-left: 1px solid #e9ecef;
+  border-right: 1px solid #e9ecef;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px 8px 0 0;
+  margin: -1.25rem -1.25rem 2rem -1.25rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+/* Events Grid */
+#events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.92rem;
+}
+
+.event-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: #667eea;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.event-image {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  display: block;
+}
+
+.event-card h3 {
+  color: #667eea;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+  flex-grow: 1;
+}
+
+.event-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.event-meta-label {
+  font-weight: 600;
+  color: #667eea;
+  min-width: 62px;
+}
+
+.event-meta-value {
+  color: #333;
+  flex-grow: 1;
+}
+
+.event-description {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.event-card a.button {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.event-card a.button:hover {
+  background-color: #667eea;
+}
+
+/* Detail Page Styles */
+.event-detail {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.event-detail p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.event-detail strong {
+  color: #667eea;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #667eea;
+  font-size: 1.2rem;
+}
+
+/* No Results */
+.no-events {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #999;
+}
+
+.no-events h2 {
+  color: #667eea;
+}
+
+/* Navigation */
+nav {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav strong {
+  color: #667eea;
+}
+
+nav a {
+  color: #667eea;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  color: #764ba2;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+footer p {
+  margin: 0;
+  color: #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #events-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    margin: -1.25rem -1.25rem 1.5rem -1.25rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  main {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  main.container {
+    max-width: calc(100% - 1rem);
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.event-card {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.event-card:nth-child(1) { animation-delay: 0.05s; }
+.event-card:nth-child(2) { animation-delay: 0.1s; }
+.event-card:nth-child(3) { animation-delay: 0.15s; }
+.event-card:nth-child(4) { animation-delay: 0.2s; }
+.event-card:nth-child(5) { animation-delay: 0.25s; }
+.event-card:nth-child(6) { animation-delay: 0.3s; }

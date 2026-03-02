@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "I AM... Happy!",
+    "dateTime": "March 2, 2026 10:00 AM - 11:00 AM",
+    "date": "Monday, March 2, 2026",
+    "description": "Come dance, sway, snap your fingers, tap your toes and feel the music at the library! Adults only.",
+    "location": "217 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7142",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4078&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 2,
+    "name": "I AM... Happy!",
+    "dateTime": "March 9, 2026 10:00 AM - 11:00 AM",
+    "date": "Monday, March 9, 2026",
+    "description": "Come dance, sway, snap your fingers, tap your toes and feel the music at the library! Adults only.",
+    "location": "217 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7142",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4079&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 3,
+    "name": "I AM... Happy!",
+    "dateTime": "March 16, 2026 10:00 AM - 11:00 AM",
+    "date": "Monday, March 16, 2026",
+    "description": "Come dance, sway, snap your fingers, tap your toes and feel the music at the library! Adults only.",
+    "location": "217 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7142",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4080&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 4,
+    "name": "I AM... Happy!",
+    "dateTime": "March 23, 2026 10:00 AM - 11:00 AM",
+    "date": "Monday, March 23, 2026",
+    "description": "Come dance, sway, snap your fingers, tap your toes and feel the music at the library! Adults only.",
+    "location": "217 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7142",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4081&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 5,
+    "name": "I AM... Happy!",
+    "dateTime": "March 30, 2026 10:00 AM - 11:00 AM",
+    "date": "Monday, March 30, 2026",
+    "description": "Come dance, sway, snap your fingers, tap your toes and feel the music at the library! Adults only.",
+    "location": "217 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7142",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4082&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 6,
+    "name": "Movie Night",
+    "dateTime": "March 6, 2026 6:00 PM - 8:00 PM",
+    "date": "Friday, March 6, 2026",
+    "description": "Join us for a special evening of family fun as we feature How to Train Your Dragon: The Hidden World (PG) under the stars.-Friday, March 6-Gates open at 6:00 pm | Movie begins at 6:30 pm-Baseball Fields – 226 Cypress Lane-Free popcorn provided by our Palm Springs Police Explorers!Bring your lawn chairs and blankets and come enjoy a fun, safe night with your community. We look forward to seeing you there!",
+    "location": "226 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7203",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4085&month=3&year=2026&day=1&calType=0",
+    "contact": "5615848200"
+  },
+  {
+    "id": 7,
+    "name": "Taco Fiesta",
+    "dateTime": "March 7, 2026 2:00 PM - 8:00 PM",
+    "date": "Saturday, March 7, 2026",
+    "description": "Save the Date: Saturday, March 7, 2026Village Athletic Complex – 226 Cypress Lane Get ready for:-Delicious tacos from local vendors-Live music & entertainment-Family-friendly activities-Cultural celebrationsMark your calendars now- this is one fiesta you won't want to miss! More details to come.",
+    "location": "226 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7055",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=3405&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  },
+  {
+    "id": 8,
+    "name": "Taco Fiesta",
+    "dateTime": "March 7, 2026 2:00 PM - 8:00 PM",
+    "date": "Saturday, March 7, 2026",
+    "description": "Join the Village of Palm Springs for a fiesta that’s sure to spice up your weekend! It’s going to be a spec-taco-lar celebration filled with great food, live music, and community fun. -Delicious, flavor-packed tacos from local vendors-Live music to keep the fiesta going-Spirits and refreshing beverages-A lively atmosphere for the whole family -March 7, 2026-2:00–8:00 pm-226 Cypress Lane, Palm Springs, FL 33461-Free Admission Bring your friends, bring your family, and come hungry — this is one fiesta you won’t want to miss.",
+    "location": "226 Cypress LanePalm Springs, FL 33461",
+    "image": "https://vpsfl.org/ImageRepository/Document?documentID=7194",
+    "url": "https://vpsfl.org/Calendar.aspx?EID=4084&month=3&year=2026&day=1&calType=0",
+    "contact": ""
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "name": "listicle-app",
+  "version": "1.0.0",
+  "description": "A listicle web app displaying VPSFL calendar events",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "scrape": "node server/scripts/scraper.js",
+    "dev": "nodemon server/server.js"
+  },
+  "keywords": ["listicle", "events", "express"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.2",
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
