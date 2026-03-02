@@ -126,7 +126,6 @@ async function getEventLinks(page) {
       if (debugMode) {
         console.log(`[DEBUG] Found ${results.length} unique "More Details" links`);
       }
-      console.log(`RESULTS: Found ${results.length} unique "More Details" links`, results);
       return results;
     }, DEBUG, VPSFL_CALENDAR_URL);
     
@@ -167,18 +166,12 @@ async function scrapeEventDetails(page, eventUrl, eventId) {
     if (!detailPageReady) {
       debugLog(`Event ${eventId} detail fields did not load within timeout`);
     }
-    const eventData = await page.evaluate((debugMode) => {
-      window.DEBUG_MODE = debugMode;
+    const eventData = await page.evaluate(() => {
       const getValue = (selector) => {
         
         try {
           const element = document.querySelector(selector);
-          if (!element) {
-            console.log(`[DEBUG] Selector not found: ${selector}`);
-            return '';
-          }
-          
-          console.log(`[DEBUG] Found element for selector: ${selector}`);
+          if (!element) return '';
           
           if (element.tagName === 'IMG') {
             const src = element.getAttribute('src') || '';
@@ -194,11 +187,8 @@ async function scrapeEventDetails(page, eventUrl, eventId) {
             return element.href || element.getAttribute('href') || '';
           }
           
-          const text = element.textContent.trim();
-          console.log(`[DEBUG] Retrieved text (${selector.substring(0, 50)}...): ${text.substring(0, 100)}`);
-          return text;
+          return element.textContent.trim();
         } catch (e) {
-          console.log(`[DEBUG] Error with selector ${selector}: ${e.message}`);
           return '';
         }
       };
@@ -214,15 +204,11 @@ async function scrapeEventDetails(page, eventUrl, eventId) {
             document.querySelector('div.eventDescription');
           
           if (altDesc && altDesc !== document.querySelector('div.detailDateDesc')) {
-            console.log('[DEBUG] Found alt description element');
             return altDesc.textContent.trim();
           }
-          
-          console.log('[DEBUG] No description div found');
+
           return '';
         }
-        
-        console.log('[DEBUG] Found div[itemprop="description"]');
         
         // Get all text content from this specific div (not children)
         const directChildren = Array.from(descDiv.childNodes)
@@ -232,14 +218,12 @@ async function scrapeEventDetails(page, eventUrl, eventId) {
           .join(' ');
         
         if (directChildren && directChildren.length > 20) {
-          console.log('[DEBUG] Description from children:', directChildren.substring(0, 200));
           return directChildren;
         }
         
         // Fallback to all text content
         const fullText = descDiv.textContent.trim();
         if (fullText && fullText.length > 20) {
-          console.log('[DEBUG] Description from full text:', fullText.substring(0, 200));
           return fullText;
         }
         

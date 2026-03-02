@@ -17,7 +17,7 @@ module.exports = function createPageRoutes({ getEvents, publicDir }) {
     }
 
     const imageHtml = event.image
-      ? `<img src="${event.image}" alt="${event.name}" style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;" />`
+      ? `<img src="${event.image}" alt="${event.name}" class="detail-image" />`
       : '';
 
     const linkHtml = event.url
@@ -40,9 +40,7 @@ module.exports = function createPageRoutes({ getEvents, publicDir }) {
       </head>
       <body>
         <nav>
-          <ul>
-            <li><a href="/">← Back to Events</a></li>
-          </ul>
+          <div class="nav-banner"></div>
         </nav>
         <main class="container">
           <article>
