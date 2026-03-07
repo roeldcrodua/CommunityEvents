@@ -66,6 +66,25 @@ main.container {
   font-size: 1.1rem;
 }
 
+.search-controls {
+  display: grid;
+  grid-template-columns: 120px minmax(180px, 240px) 80px minmax(240px, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  margin: -0.5rem 0 1.4rem 0;
+}
+
+.search-controls label {
+  margin: 0;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.search-controls select,
+.search-controls input {
+  margin: 0;
+}
+
 /* Events Grid */
 #events-container {
   display: grid;
@@ -245,6 +264,12 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .search-controls {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    margin-top: 0;
+  }
+
   #events-container {
     grid-template-columns: 1fr;
   }
