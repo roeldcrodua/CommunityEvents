@@ -12,6 +12,8 @@ Time spent: 8 hours
 
 ## Required Features
 
+### PART 1
+
 The following **required** functionality is completed:
 
 <!-- Make sure to check off completed functionality below -->
@@ -24,20 +26,38 @@ The following **required** functionality is completed:
 - [x] **The web app serves an appropriate 404 page when no matching route is defined**
 - [x] **The web app is styled using Picocss**
 
+### PART 2
+
+<!-- Make sure to check off completed functionality below -->
+- [ ] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
+- [ ] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
+  - [ ] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+  - [ ]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
+
+
 The following **optional** features are implemented:
 
 - [x] The web app displays items in a unique format, such as cards rather than lists or animated list items
 
+- [X] The user can search for items by a specific attribute
+
 The following **additional** features are implemented:
 
-- [ ] List anything else that you added to improve the site's functionality!
+- [X] Sort the list from the most recent data/events as default display.
 
 ## Video Walkthrough
 
 
 Here's a walkthrough of implemented required features:
 
+### PART 1
+
 <img src='https://github.com/roeldcrodua/CommunityEvents/blob/main/assets/demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+
+### PART 2
+
+<img src='https://github.com/roeldcrodua/CommunityEvents/blob/main/assets/demo1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Wondershare Uniconverter 17 Tool - GIF Maker
