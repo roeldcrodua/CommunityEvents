@@ -8,27 +8,29 @@ module.exports = function createPageRoutes({ getEvents, publicDir }) {
     res.sendFile(path.join(publicDir, 'index.html'));
   });
 
-  router.get('/event/:id', (req, res) => {
+  router.get('/event/:id', async (req, res) => {
     const eventId = Number.parseInt(req.params.id, 10);
-    const event = getEvents().find((item) => item.id === eventId);
+    try {
+      const events = await getEvents();
+      const event = events.find((item) => Number.parseInt(String(item.id), 10) === eventId);
 
-    if (!event) {
-      return res.status(404).sendFile(path.join(publicDir, '404.html'));
-    }
+      if (!event) {
+        return res.status(404).sendFile(path.join(publicDir, '404.html'));
+      }
 
-    const imageHtml = event.image
-      ? `<img src="${event.image}" alt="${event.name}" class="detail-image" />`
-      : '';
+      const imageHtml = event.image
+        ? `<img src="${event.image}" alt="${event.name}" class="detail-image" />`
+        : '';
 
-    const linkHtml = event.url
-      ? `<p><strong>Event Link:</strong> <a href="${event.url}" target="_blank" rel="noopener noreferrer">🔗 Visit Event Page</a></p>`
-      : '';
+      const linkHtml = event.url
+        ? `<p><strong>Event Link:</strong> <a href="${event.url}" target="_blank" rel="noopener noreferrer">🔗 Visit Event Page</a></p>`
+        : '';
 
-    const contactHtml = event.contact
-      ? `<p><strong>Contact:</strong> ${event.contact}</p>`
-      : '';
+      const contactHtml = event.contact
+        ? `<p><strong>Contact:</strong> ${event.contact}</p>`
+        : '';
 
-    res.send(`
+      res.status(200).send(`
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -63,6 +65,9 @@ module.exports = function createPageRoutes({ getEvents, publicDir }) {
       </body>
       </html>
     `);
+    } catch (error) {
+      res.status(409).send(`Error loading event from database: ${error.message}`);
+    }
   });
 
   return router;
