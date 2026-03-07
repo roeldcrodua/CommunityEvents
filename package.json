@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "scrape": "node server/scripts/scraper.js",
+    "db:sync": "node server/config/databasequery.js",
     "dev": "nodemon server/server.js"
   },
   "keywords": ["listicle", "events", "express"],
@@ -15,6 +16,8 @@
     "express": "^4.18.2",
     "cheerio": "^1.0.0-rc.12",
     "axios": "^1.6.2",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1",
     "puppeteer": "^21.0.0"
   },
   "devDependencies": {
