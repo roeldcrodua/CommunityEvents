@@ -3,9 +3,12 @@
  * Fetches events from the server and displays them dynamically
  */
 
+let allEvents = [];
+
 // Fetch and display events on page load
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAndDisplayEvents();
+  initializeSearch();
 });
 
 /**
@@ -23,8 +26,9 @@ async function loadAndDisplayEvents() {
     }
 
     const events = await response.json();
+    allEvents = sortEventsByMostRecent(Array.isArray(events) ? events : []);
 
-    if (events.length === 0) {
+    if (allEvents.length === 0) {
       container.innerHTML = `
         <div class="no-events">
           <h2>No events found</h2>
@@ -34,16 +38,9 @@ async function loadAndDisplayEvents() {
       return;
     }
 
-    // Clear loading state
-    container.innerHTML = '';
+    renderEvents(allEvents);
 
-    // Create and append event cards
-    events.forEach(event => {
-      const card = createEventCard(event);
-      container.appendChild(card);
-    });
-
-    console.log(`✅ Loaded ${events.length} events`);
+    console.log(`✅ Loaded ${allEvents.length} events`);
 
   } catch (error) {
     console.error('Error loading events:', error);
@@ -54,6 +51,76 @@ async function loadAndDisplayEvents() {
       </div>
     `;
   }
+}
+
+function initializeSearch() {
+  const attributeSelect = document.getElementById('search-attribute');
+  const queryInput = document.getElementById('search-query');
+
+  if (!attributeSelect || !queryInput) {
+    return;
+  }
+
+  const onSearchChange = () => {
+    const selectedAttribute = attributeSelect.value;
+    const query = queryInput.value.trim().toLowerCase();
+    const filtered = filterEvents(selectedAttribute, query);
+    renderEvents(filtered);
+  };
+
+  attributeSelect.addEventListener('change', onSearchChange);
+  queryInput.addEventListener('input', onSearchChange);
+}
+
+function parseEventDate(event) {
+  const candidate = (event?.date || event?.dateTime || '').replace(/\u00a0/g, ' ').trim();
+  const timestamp = Date.parse(candidate);
+  return Number.isNaN(timestamp) ? Number.NEGATIVE_INFINITY : timestamp;
+}
+
+function sortEventsByMostRecent(events) {
+  return [...events].sort((firstEvent, secondEvent) => {
+    return parseEventDate(secondEvent) - parseEventDate(firstEvent);
+  });
+}
+
+function filterEvents(attribute, query) {
+  if (!query) {
+    return allEvents;
+  }
+
+  return allEvents.filter((event) => {
+    const value = event?.[attribute];
+    if (value === null || value === undefined) {
+      return false;
+    }
+
+    return String(value).toLowerCase().includes(query);
+  });
+}
+
+function renderEvents(events) {
+  const container = document.getElementById('events-container');
+
+  if (!container) {
+    return;
+  }
+
+  if (!Array.isArray(events) || events.length === 0) {
+    container.innerHTML = `
+      <div class="no-events">
+        <h2>No matching events found</h2>
+        <p>Try a different search term or attribute.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = '';
+  events.forEach((event) => {
+    const card = createEventCard(event);
+    container.appendChild(card);
+  });
 }
 
 /**
