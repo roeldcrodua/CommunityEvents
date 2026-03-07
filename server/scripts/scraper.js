@@ -1,9 +1,10 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const { syncEventsFromJson } = require('../config/databasequery');
 
 // const VPSFL_CALENDAR_URL = 'https://vpsfl.org/calendar.aspx?month=3&year=2026';
-const VPSFL_CALENDAR_URL = 'https://vpsfl.org/calendar.aspx';
+const VPSFL_CALENDAR_URL = 'https://vpsfl.org/calendar.aspx?CID=32,14,24,22,30&showPastEvents=true';
 
 const DEBUG = process.env.DEBUG === 'true' || process.argv.includes('--debug');
 
@@ -54,6 +55,26 @@ function cleanDescription(value) {
   const lastTabIndex = value.lastIndexOf('\t');
   const cleaned = (lastTabIndex === -1 ? value : value.slice(lastTabIndex + 1)).trim();
   return cleaned || 'No description available';
+}
+
+function extractEventIdFromUrl(eventUrl, fallbackId) {
+  try {
+    const parsed = new URL(eventUrl);
+    const candidateKeys = ['EID', 'eid', 'eventid', 'eventId', 'id'];
+    for (const key of candidateKeys) {
+      const value = parsed.searchParams.get(key);
+      if (value && /^\d+$/.test(value)) {
+        return Number.parseInt(value, 10);
+      }
+    }
+  } catch (error) {
+    const match = String(eventUrl).match(/(?:eid|eventid|id)=([0-9]+)/i);
+    if (match) {
+      return Number.parseInt(match[1], 10);
+    }
+  }
+
+  return fallbackId;
 }
 
 /**
@@ -311,8 +332,9 @@ async function scrapeCalendarEvents() {
       const eventData = await scrapeEventDetails(page, eventLinks[i], i + 1);
       
       if (hasNonEmptyEventData(eventData)) {
+        const eid = extractEventIdFromUrl(eventLinks[i], i + 1);
         events.push({
-          id: i + 1,
+          id: eid,
           name: eventData.name || 'Untitled Event',
           dateTime: `${eventData.specificDate} ${eventData.specificTime}`.trim(),
           date: eventData.date,
@@ -415,7 +437,19 @@ async function main() {
   }
   
   const jsonPath = path.join(dataPath, 'events.json');
-  fs.writeFileSync(jsonPath, JSON.stringify(events, null, 2));
+  const nextContent = JSON.stringify(events, null, 2);
+  const previousContent = fs.existsSync(jsonPath) ? fs.readFileSync(jsonPath, 'utf-8') : '';
+  const hasChanges = previousContent !== nextContent;
+
+  fs.writeFileSync(jsonPath, nextContent);
+
+  if (hasChanges) {
+    console.log('🔄 events.json changed. Running database sync...');
+    await syncEventsFromJson();
+    console.log('✅ Database sync completed');
+  } else {
+    console.log('ℹ️  No changes in events.json. Skipping database sync.');
+  }
   
   console.log(`
 ✅ Scraping complete!
