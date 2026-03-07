@@ -18,6 +18,25 @@
       <p>Find exciting happenings in the Village of Palm Springs and surrounding areas. Click on any event to learn more details!</p>
     </section>
 
+    <section class="search-controls" aria-label="Search events">
+      <label for="search-attribute">Search By</label>
+      <select id="search-attribute" name="search-attribute">
+        <option value="name">Name</option>
+        <option value="location">Location</option>
+        <option value="dateTime">Date &amp; Time</option>
+        <option value="description">Description</option>
+      </select>
+
+      <label for="search-query">Search</label>
+      <input
+        id="search-query"
+        name="search-query"
+        type="search"
+        placeholder="Type to search events"
+        autocomplete="off"
+      />
+    </section>
+
     <section id="events-container">
       <div class="loading">Loading events...</div>
     </section>
