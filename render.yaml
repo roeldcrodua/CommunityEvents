@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: communityevents-web
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PGHOST
+        sync: false
+      - key: PGPORT
+        value: "5432"
+      - key: PGDATABASE
+        sync: false
+      - key: PGUSER
+        sync: false
+      - key: PGPASSWORD
+        sync: false
+
+  - type: cron
+    name: communityevents-scraper
+    runtime: node
+    plan: free
+    schedule: "0 */6 * * *"
+    buildCommand: npm install
+    startCommand: npm run scrape
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PUPPETEER_DISABLE_SANDBOX
+        value: "true"
+      - key: PGHOST
+        sync: false
+      - key: PGPORT
+        value: "5432"
+      - key: PGDATABASE
+        sync: false
+      - key: PGUSER
+        sync: false
+      - key: PGPASSWORD
+        sync: false

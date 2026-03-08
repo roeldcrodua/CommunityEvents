@@ -70,6 +70,140 @@ GIF created with Wondershare Uniconverter 17 Tool - GIF Maker
 
 Describe any challenges encountered while building the app or any additional context you'd like to add.
 
+## Render Deployment
+
+This repo includes a Render Blueprint file at `render.yaml` for:
+
+- `communityevents-web` (Node web service)
+- `communityevents-scraper` (optional cron job running `npm run scrape` every 6 hours)
+
+### Option A: Deploy with `render.yaml` (recommended)
+
+1. Push this project to GitHub.
+1. In Render, click **New +** → **Blueprint**.
+1. Select your repo and keep `render.yaml`.
+1. In Render environment variables, set `PGHOST`, `PGPORT` (default `5432`), `PGDATABASE`, `PGUSER`, and `PGPASSWORD`.
+1. Deploy.
+
+### Option B: Manual Web Service only
+
+If you only want the web app without scheduled scraping:
+
+- Runtime: Node
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Add the same PostgreSQL environment variables above.
+
+After deploy, open your Render service URL to verify the app is live.
+
+## Docker Deployment (Split Images)
+
+This project includes two Dockerfiles so the web app image can stay lean while the scraper image includes Puppeteer.
+
+### 1) Web App Image (No Puppeteer Runtime Needed)
+
+Build:
+
+```bash
+docker build -f Dockerfile.web -t communityevents-web:latest .
+```
+
+Run:
+
+```bash
+docker run --rm -p 3000:3000 \
+  -e PGHOST="<your-pg-host>" \
+  -e PGPORT="5432" \
+  -e PGDATABASE="communityevents" \
+  -e PGUSER="<your-pg-user>" \
+  -e PGPASSWORD="<your-pg-password>" \
+  communityevents-web:latest
+```
+
+### 2) Scraper Image (Includes Puppeteer)
+
+Build:
+
+```bash
+docker build -f Dockerfile.scraper -t communityevents-scraper:latest .
+```
+
+Run manually:
+
+```bash
+docker run --rm \
+  -e PGHOST="<your-pg-host>" \
+  -e PGPORT="5432" \
+  -e PGDATABASE="communityevents" \
+  -e PGUSER="<your-pg-user>" \
+  -e PGPASSWORD="<your-pg-password>" \
+  -e PUPPETEER_DISABLE_SANDBOX="true" \
+  communityevents-scraper:latest
+```
+
+Deploy recommendation:
+
+- Deploy `communityevents-web` as the always-on web service.
+- Run `communityevents-scraper` as a scheduled/cron job.
+
+### 3) Docker Compose (Web + On-Demand Scraper)
+
+With environment variables set (`PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, `PGPASSWORD`):
+
+Start web app:
+
+```bash
+docker compose up --build -d web
+```
+
+Run scraper on demand:
+
+```bash
+docker compose --profile scrape run --rm scraper
+```
+
+Stop web app:
+
+```bash
+docker compose down
+```
+
+### 4) Production Compose Override
+
+Use the production override for stricter runtime defaults (for example, `restart: always` and healthcheck):
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d web
+```
+
+Run scraper on demand with the same production merge:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml --profile scrape run --rm scraper
+```
+
+### 5) One-Command Workflow (PowerShell)
+
+Use the helper script:
+
+```powershell
+./scripts/compose.ps1 up
+./scripts/compose.ps1 status
+./scripts/compose.ps1 scrape
+./scripts/compose.ps1 logs
+./scripts/compose.ps1 down
+```
+
+Or use npm shortcuts:
+
+```bash
+npm run compose:up
+npm run compose:status
+npm run compose:scrape
+npm run compose:logs
+npm run compose:down
+```
+
 ## License
 
 Copyright 2026 Roel Crodua

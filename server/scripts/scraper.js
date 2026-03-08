@@ -311,7 +311,11 @@ async function scrapeCalendarEvents() {
     }
     
     const t = timer('Browser launch');
-    browser = await puppeteer.launch({ headless: true });
+    const disableSandbox = process.env.PUPPETEER_DISABLE_SANDBOX === 'true';
+    browser = await puppeteer.launch({
+      headless: true,
+      args: disableSandbox ? ['--no-sandbox', '--disable-setuid-sandbox'] : []
+    });
     t();
     
     const page = await browser.newPage();

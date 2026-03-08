@@ -7,7 +7,12 @@
     "start": "node server/server.js",
     "scrape": "node server/scripts/scraper.js",
     "db:sync": "node server/config/databasequery.js",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon server/server.js",
+    "compose:up": "powershell -ExecutionPolicy Bypass -File ./scripts/compose.ps1 up",
+    "compose:scrape": "powershell -ExecutionPolicy Bypass -File ./scripts/compose.ps1 scrape",
+    "compose:status": "powershell -ExecutionPolicy Bypass -File ./scripts/compose.ps1 status",
+    "compose:down": "powershell -ExecutionPolicy Bypass -File ./scripts/compose.ps1 down",
+    "compose:logs": "powershell -ExecutionPolicy Bypass -File ./scripts/compose.ps1 logs"
   },
   "keywords": ["listicle", "events", "express"],
   "author": "",
