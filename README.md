@@ -29,10 +29,10 @@ The following **required** functionality is completed:
 ### PART 2
 
 <!-- Make sure to check off completed functionality below -->
-- [ ] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
-- [ ] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
-  - [ ] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
-  - [ ]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
+- [x] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
+- [x] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
+  - [x] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+  - [x]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
 
 
 The following **optional** features are implemented:
@@ -58,6 +58,16 @@ Here's a walkthrough of implemented required features:
 ### PART 2
 
 <img src='https://github.com/roeldcrodua/CommunityEvents/blob/main/assets/demo1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+#### PostgreSQL Evidence (PART 2)
+
+- The PART 2 walkthrough includes a Render dashboard view showing the PostgreSQL instance is available.
+- The PART 2 walkthrough includes a `psql` table content demonstration using:
+
+```sql
+SELECT * FROM events;
+```
+<img src='https://github.com/roeldcrodua/CommunityEvents/blob/main/assets/demo2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Wondershare Uniconverter 17 Tool - GIF Maker
